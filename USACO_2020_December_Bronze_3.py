@@ -1,6 +1,5 @@
 ln = int(input())
 cows = [input().split() for itm in range(ln)]
-inf = float('infinity')
 finals = [None]*ln
 cows = [(dr,int(a),int(b)) for dr,a,b in cows]
 
@@ -23,15 +22,11 @@ for ind1,i in enumerate(cows):
 
 queue.sort()
 for dist,stopdist,val,stop in queue:
-    if not finals[stop] or finals[stop]>stopdist:
-        if finals[val]:
-            finals[val] = min(finals[val],dist)
-        else:
-            finals[val] = dist
+    if (not finals[stop] or finals[stop]>stopdist) and not finals[val]:
+        finals[val] = dist
 
 for itm in finals:
     if itm:
         print(itm)
     else:
         print('Infinity')
-
