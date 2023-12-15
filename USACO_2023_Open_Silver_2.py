@@ -1,36 +1,3 @@
-'''
-C,N = input().split()
-C,N = int(C),int(N)
-running = [0]*N
-values = [input() for line in range(N)]
-def solution2(strings):
-    table = str.maketrans('GH', '01')
-    numbers = [
-        int(s.translate(table), 2)
-        for s in strings
-    ]
-    L = len(strings[0])
-    bits = [2**i for i in range(L)]
-    dist = [None] * 2**L
-    for x in numbers:
-        dist[x] = 0
-    horizon = numbers
-    d = 1
-    while horizon:
-        horizon = [
-            y
-            for x in horizon
-            for bit in bits
-            for y in [x ^ bit]
-            if dist[y] is None
-            for dist[y] in [d]
-        ]
-        d += 1
-    return [L - dist[~x] for x in numbers]
-for final in solution2(values):
-    print(final)
-'''
-
 c,n = input().split()
 c = int(c)
 n = int(n)
